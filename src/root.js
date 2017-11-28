@@ -1,16 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
-import { Provider} from 'react-redux';
+import { createStore, applyMiddleware, compose } from 'redux';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-
+import SC from 'soundcloud';
+SC.initialize({
+	client_id: 'ggX0UomnLs0VmW7qZnCzw'
+});
 
 import reducers from './reducers';
 import App from './containers/App'; // Main app route
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
 	reducers,
-	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() // Redux dev tools
+	composeEnhancers(applyMiddleware(thunk.withExtraArgument(SC)))
 );
 
 const Root = ({store}) => (

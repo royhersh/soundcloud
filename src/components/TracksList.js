@@ -1,14 +1,15 @@
 import React from 'react';
 
-const TracksList = () => (
-	<ul className="tracksList">
-		<li><a href="#">Zurich</a></li>
-		<li><a href="#">Geneva</a></li>
-		<li><a href="#">Winterthur</a></li>
-		<li><a href="#">Lausanne</a></li>
-		<li><a href="#">Lucerne</a></li>
-		<li><a href="#">Alabamba</a></li>
-	</ul>
-);
+const TracksList = (props) => {
+	const { items } = props;
+	const renderItems = items.map((item) => (
+		<li key={item.id}><a href="#">{item.title}</a></li>
+	));
+	return (
+		<ul className="tracksList">
+			{renderItems}
+		</ul>
+	);
+};
 
 export default TracksList;

@@ -1,1 +1,3 @@
-export const AUTH_USER = 'AUTH_USER';
+export const SEARCH_FOR_ITEM = 'SEARCH_FOR_ITEM';
+export const UPDATE_SEARCH_RESULT = 'UPDATE_SEARCH_RESULT';
+

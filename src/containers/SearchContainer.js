@@ -1,4 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { searchForItem } from '../actions/index';
+
 import TracksList from '../components/TracksList';
 
 class SearchContainer extends React.Component {
@@ -6,22 +9,16 @@ class SearchContainer extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			searchBox: ''
+			searchBoxValue: ''
 		};
 	}
 
-	handleSearchChange = (e) => this.setState({ searchBox: e.target.value });
+	handleSearchChange = (e) => this.setState({ searchBoxValue: e.target.value });
 
 	render() {
-		const { searchBox } = this.state;
-		
-		const InputBox = () => (
-			<div className="inputBox">
-				<input type="text" value={searchBox} onChange={this.handleSearchChange}/>
-				<button>Search</button>
-			</div>
-		);
-	
+		const { searchBoxValue } = this.state;
+		const { searchResult, searchForItem } = this.props;
+
 		const Footer = () => (
 			<div className="footer">
 				<button><i className="fa fa-long-arrow-left" aria-hidden="true"></i></button>
@@ -30,18 +27,28 @@ class SearchContainer extends React.Component {
 				<i className="fa fa-th-large fa-2" aria-hidden="true"></i>
 			</div>
 		);
-	
+
 		return (
 			<div className="search container">
-			<div className="inputBox">
-				<input type="text" value={searchBox} onChange={this.handleSearchChange}/>
-				<button>Search</button>
-			</div>
-				<TracksList />
+
+				{/* Search Input and Button */}
+				<div className="inputBox">
+					<input type="text" value={searchBoxValue} onChange={this.handleSearchChange} />
+					<button onClick={()=>searchForItem(searchBoxValue)}>Search</button>
+				</div>
+
+				<TracksList
+					items={searchResult}
+				/>
+
 				<Footer />
 			</div>
 		);
 	}
-};
+}
 
-export default SearchContainer;
+const mapStateToProps = (state) => ({
+	searchResult: state.searchResult
+});
+
+export default connect(mapStateToProps, {searchForItem})(SearchContainer);
