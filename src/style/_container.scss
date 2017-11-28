@@ -1,0 +1,98 @@
+.container {
+	width:30%;
+	height: 80vh;
+	margin-top: 10vh;
+	&.search{
+		background:lightgoldenrodyellow;
+		position: relative;
+
+		.inputBox {
+			display: flex;
+			justify-content: space-around;
+			margin-top: 1em;
+
+			input {
+				width:60%;
+			}
+
+			button {
+			
+				width: 30%;
+				
+			}
+		}
+
+		.tracksList {
+			list-style-type: none;
+			margin-top: 2em;
+			padding: 0;
+			
+			
+			li {
+				font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
+				border-bottom: 1px solid #ccc;
+				padding-left:20px;
+				
+				&:last-child {
+					border: none;						
+				}
+
+				a {
+					text-decoration: none;
+					color: #000;						
+					display: block;
+					width: 100%;
+					transition: font-size 0.3s ease;
+
+					&:hover {
+						font-size: 30px;
+					}
+				}
+
+			}
+		}
+
+		.footer {
+			display: flex;
+			flex-direction: row;
+			position: absolute;
+			bottom: 0;
+			align-items: center;
+			width: 100%;
+			padding-left: 1em;
+			padding-right: 1em;
+			padding-bottom: 1em;
+			box-sizing: border-box;
+
+			button {
+				width:100px
+			}
+
+			.gap {
+				flex-grow: 1;
+			}
+
+			>i{
+				font-size:2em;
+				margin-left:10px;
+				transition: font-size 0.1s ease;
+			}
+
+			>i:hover{
+				color:#333;
+				font-size:2.1em;
+			}				
+		}				
+		
+	} 	
+	
+	
+	&.image {
+		background:lightcyan;
+	}
+	
+	
+	&.history {
+		background:lightblue;
+	}
+}
