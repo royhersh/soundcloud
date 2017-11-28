@@ -17,3 +17,22 @@ input, textarea {
         border-color: $focus-input-border;
     }
 }
+
+button {
+
+	background: $accent-color-2;
+	padding: 10px;
+	color: white;
+	font-size: larger;
+	font-weight: 800;
+	border: none;
+	
+	&:hover {
+		background: darken($accent-color-2, 10%);
+	}
+
+	&:active {
+		background: darken($accent-color-2, 30%);
+	}  
+	
+}
