@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { searchForItem } from '../actions/index';
+import { searchForItem, chooseTrack } from '../actions/index';
 
 import TracksList from '../components/TracksList';
 
@@ -17,7 +17,7 @@ class SearchContainer extends React.Component {
 
 	render() {
 		const { searchBoxValue } = this.state;
-		const { searchResult, searchForItem } = this.props;
+		const { searchResult, searchForItem, chooseTrack } = this.props;
 
 		const Footer = () => (
 			<div className="footer">
@@ -39,6 +39,7 @@ class SearchContainer extends React.Component {
 
 				<TracksList
 					items={searchResult}
+					handleChooseTrack = {chooseTrack}
 				/>
 
 				<Footer />
@@ -51,4 +52,4 @@ const mapStateToProps = (state) => ({
 	searchResult: state.searchResult
 });
 
-export default connect(mapStateToProps, {searchForItem})(SearchContainer);
+export default connect(mapStateToProps, {searchForItem, chooseTrack})(SearchContainer);

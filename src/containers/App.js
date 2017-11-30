@@ -6,6 +6,7 @@ import '../style/app.scss';
 import '../style/font-awesome/css/font-awesome.min.css';
 
 import SearchContainer from './SearchContainer';
+import HistoryContainer from './historyContainer';
 
 class App extends React.Component {
 	constructor(props) {
@@ -27,7 +28,9 @@ class App extends React.Component {
 				/>
 
 				<div className="image container"></div>
-				<div className="history container"></div>
+				<HistoryContainer
+				/>
+				
 			</div>
 		);
 
