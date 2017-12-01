@@ -2,8 +2,8 @@ import * as actions from '../actions/types';
 import _ from 'lodash';
 
 const HISTORY_SIZE = 5;
-
-export default (state = [], action) => {
+const initialState = JSON.parse(localStorage.getItem('history')) || [];
+export default (state = initialState, action) => {
 	switch (action.type) {
 	case actions.HISTORY_PUSH: {
 		// debugger
@@ -19,6 +19,8 @@ export default (state = [], action) => {
 		if (newHistory.length === HISTORY_SIZE + 1) {
 			return newHistory.slice(0, -1);
 		}
+		// persist history for subsequent visit
+		localStorage.setItem('history', JSON.stringify(newHistory));
 		// return new history object
 		return newHistory;
 	}
