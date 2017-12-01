@@ -28,6 +28,8 @@ export function searchForItem(rawTerm) {
 			/* 			SC.stream(`/tracks/${tracks.collection[0].id}`).then(function (player) {
 							player.play();
 						}); */
+			console.log('SC TRACK', tracks);
+			dispatch(updateNext(tracks.next_href));
 			dispatch(updateSearchBox(term));
 			dispatch(updateSearchResult(tracks.collection));
 			dispatch(historyPush({id: term, title:term}));
@@ -35,6 +37,26 @@ export function searchForItem(rawTerm) {
 
 	};
 }
+
+export function updateNext(href) {
+	return {
+		type: actions.UPDATE_NEXT_HREF,
+		payload: href
+	}
+}
+
+export function fetchNextResult() {
+	return function (dispatch, getState) {
+		const href = getState().ui.nextHref;
+		fetch(href)
+			.then((res) => res.json())
+			.then((tracks) => {
+				dispatch(updateNext(tracks.next_href));
+				dispatch(updateSearchResult(tracks.collection));
+			});
+	}
+}
+
 export function updateSearchResult(collection) {
 	console.log('updateSearchResult - collection', collection)
 	return {
