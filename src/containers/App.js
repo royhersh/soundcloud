@@ -7,6 +7,7 @@ import '../style/font-awesome/css/font-awesome.min.css';
 
 import SearchContainer from './SearchContainer';
 import HistoryContainer from './historyContainer';
+import ImageContainer from './ImageContainer';
 
 class App extends React.Component {
 	constructor(props) {
@@ -27,7 +28,7 @@ class App extends React.Component {
 					
 				/>
 
-				<div className="image container"></div>
+				<ImageContainer />
 				<HistoryContainer
 				/>
 				

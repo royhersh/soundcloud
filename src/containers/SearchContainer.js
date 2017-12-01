@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { searchForItem, chooseTrack } from '../actions/index';
+import { updateSearchBox, searchForItem, chooseTrack } from '../actions/index';
 
 import TracksList from '../components/TracksList';
 
@@ -8,16 +8,13 @@ class SearchContainer extends React.Component {
 
 	constructor(props) {
 		super(props);
-		this.state = {
-			searchBoxValue: ''
-		};
+	
 	}
 
-	handleSearchChange = (e) => this.setState({ searchBoxValue: e.target.value });
+	handleSearchChange = (e) => this.props.updateSearchBox(e.target.value )  ;
 
 	render() {
-		const { searchBoxValue } = this.state;
-		const { searchResult, searchForItem, chooseTrack } = this.props;
+		const { searchBoxValue, searchResult, searchForItem, chooseTrack } = this.props;
 
 		const Footer = () => (
 			<div className="footer">
@@ -49,7 +46,8 @@ class SearchContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-	searchResult: state.searchResult
+	searchResult: state.searchResult,
+	searchBoxValue: state.ui.searchBox
 });
 
-export default connect(mapStateToProps, {searchForItem, chooseTrack})(SearchContainer);
+export default connect(mapStateToProps, {updateSearchBox, searchForItem, chooseTrack})(SearchContainer);

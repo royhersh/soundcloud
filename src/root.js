@@ -17,6 +17,9 @@ const store = createStore(
 	reducers,
 	composeEnhancers(applyMiddleware(thunk.withExtraArgument(SC)))
 );
+store.subscribe(function () {
+	console.log(store.getState());
+});
 
 const Root = ({store}) => (
 	<Provider store={store}>

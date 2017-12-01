@@ -1,13 +1,15 @@
 import * as actions from '../actions/types';
+import _ from 'lodash';
 
 const HISTORY_SIZE = 5;
 
 export default (state = [], action) => {
 	switch (action.type) {
 	case actions.HISTORY_PUSH: {
+		// debugger
 		let newHistory = [...state]; // will hold new history object
 		// check if item already in history and return it's index or -1 if not exist
-		const newItemIndex = state.indexOf(action.payload);
+		const newItemIndex = _.findIndex(state, action.payload);
 		if (newItemIndex !== -1) {
 			newHistory.splice(newItemIndex, 1);
 		}
