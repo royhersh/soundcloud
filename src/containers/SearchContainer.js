@@ -13,11 +13,6 @@ class SearchContainer extends React.Component {
 
 	handleSearchChange = (e) => this.props.updateSearchBox(e.target.value )  ;
 	handleChooseTrack = (item) => {
-		var imageContainer = $('.container .image');
-		const offset = imageContainer.offset();
-		const x = imageContainer.width() / 2 + offset.left; 
-		const y = imageContainer.height() / 2 + offset.top; 
-		console.log(x,y);
 
 		return this.props.chooseTrack(item);
 	}	
@@ -35,12 +30,7 @@ class SearchContainer extends React.Component {
 
 		return (
 			<div className="search container">
-				<div className="test" style={{
-					position: 'fixed',
-					width: '10px',
-					height: '10px',
-					background:'red'
-				}} />
+			
 				{/* Search Input and Button */}
 				<div className="inputBox">
 					<input type="text" value={searchBoxValue} onChange={this.handleSearchChange} />
@@ -49,7 +39,8 @@ class SearchContainer extends React.Component {
 
 				<TracksList
 					items={searchResult}
-					handleChooseTrack = {this.handleChooseTrack}
+					handleChooseTrack={chooseTrack}
+					flyEffect={true}
 				/>
 
 				<Footer
