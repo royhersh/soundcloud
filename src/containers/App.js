@@ -10,27 +10,15 @@ import HistoryContainer from './historyContainer';
 import ImageContainer from './ImageContainer';
 
 class App extends React.Component {
-	constructor(props) {
-		super(props);
-
-	}
 
 	render() {
-		
-		// find all sounds of buskers licensed under 'creative commons share alike'
-
 	
-
 		return (
 			<div className="appContainer">
 
-				<SearchContainer
-					
-				/>
-
+				<SearchContainer/>
 				<ImageContainer />
-				<HistoryContainer
-				/>
+				<HistoryContainer/>
 				
 			</div>
 		);
