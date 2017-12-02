@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { updateSearchBox, searchForItem, chooseTrack, fetchNextResult } from '../actions/index';
-import $ from 'jquery';
 import TracksList from '../components/TracksList';
 
 class SearchContainer extends React.Component {
@@ -11,11 +10,8 @@ class SearchContainer extends React.Component {
 	
 	}
 
-	handleSearchChange = (e) => this.props.updateSearchBox(e.target.value )  ;
-	handleChooseTrack = (item) => {
-
-		return this.props.chooseTrack(item);
-	}	
+	handleSearchChange = (e) => this.props.updateSearchBox(e.target.value);
+	
 	render() {
 		const { searchBoxValue, searchResult, searchForItem, chooseTrack , fetchNextResult} = this.props;
 
