@@ -5,6 +5,8 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import SC from 'soundcloud';
+
+
 SC.initialize({
 	client_id: 'ggX0UomnLs0VmW7qZnCzw'
 });
@@ -18,10 +20,9 @@ const store = createStore(
 	composeEnhancers(applyMiddleware(thunk.withExtraArgument(SC)))
 );
 store.subscribe(function () {
-	console.log(store.getState());
 });
 
-const Root = ({store}) => (
+const Root = ({ store }) => (
 	<Provider store={store}>
 		<div className="container">
 			<Router>

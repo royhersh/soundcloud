@@ -11,6 +11,7 @@ class HistoryContainer extends React.Component {
 	
 		return (
 			<div className="history container">
+				<h1>History</h1>
 				<TracksList
 					items={historyList}
 					handleChooseTrack={searchForItem}

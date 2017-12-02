@@ -29,3 +29,20 @@
 	}
 
 }
+
+.tiles {
+	display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+	margin-top: 30px;
+	
+	img {
+		display:block;
+		width: 33%;
+		height: 33%;
+		box-sizing: border-box;
+		padding:15px;
+		border:none;
+	}
+}

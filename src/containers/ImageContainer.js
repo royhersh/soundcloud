@@ -22,18 +22,17 @@ class ImageContainer extends React.Component {
 
 	render() {
 		const { currentTrack, showPlayer } = this.props;
-		let track = null;
+		let cover = null;
+		let title = null;
 		if (currentTrack) {
-			const cover = currentTrack.artwork_url || currentTrack.user.avatar_url;
-			track = [
-				<h3 key='header'>{currentTrack.title}</h3>,
-				<img key='image' onClick={()=>showPlayer()} src={cover} />,
-				currentTrack.showPlayer && <div key='player' className="playerFrame" dangerouslySetInnerHTML={{ __html: currentTrack.embeddedPlayer }} />
-			];
+			title = currentTrack.title;
+			cover = currentTrack.artwork_url || currentTrack.user.avatar_url;
 		}
 		return (
 			<div className="image container">
-				{track}
+				<h3 key='header'>{title}</h3>
+				<img key='image' onClick={()=>showPlayer()} src={cover} />
+				{currentTrack && currentTrack.showPlayer && <div key='player' className="playerFrame" dangerouslySetInnerHTML={{ __html: currentTrack.embeddedPlayer }} />}
 			</div>
 		);
 	}

@@ -3,17 +3,16 @@ import { connect } from 'react-redux';
 import $ from 'jquery';
 import classNames from 'classnames';
 
-class TracksList extends React.Component  {
-	
-	
+class TracksList extends React.Component {
+
+
 	componentDidUpdate() {
-		console.log('component did update', this.props)
 		// Handling fly effect
 		if (!this.props.flyEffect) return;
-		var imageContainer = $('.container .image');
+		var imageContainer = $('.container .image img');
 		const offset = imageContainer.offset();
-		const left = imageContainer.width() / 2 + offset.left; 
-		const top = imageContainer.height() / 2 + offset.top; 
+		const left = imageContainer.width() / 2 + offset.left;
+		const top = imageContainer.height() / 2 + offset.top;
 
 		$('.flyEffect').on('click', function () {
 			const clone = $(this).clone();
@@ -21,16 +20,18 @@ class TracksList extends React.Component  {
 				.appendTo($('body'))
 				.css({
 					opacity: '1',
-					position: 'absolute',
+					position: 'fixed',
 					top: $(this).offset().top,
-					left: $(this).offset().lef
+					left: $(this).offset().left,
+					width: $(this).width(),
+					height: $(this).height()
 				})
 				.animate({
 					top: top,
 					left: left,
-					opacity:0
-				}, ()=>$(clone).detach());
-			
+					opacity: 0
+				}, () => $(clone).detach());
+
 		});
 	}
 
@@ -43,6 +44,18 @@ class TracksList extends React.Component  {
 		const renderItems = items.map((item) => (
 			<li className={itemClass} key={item.id} onClick={() => handleChooseTrack(item)}><a href="#">{item.title}</a></li>
 		));
+		
+		if (this.props.showTiles === true) {
+			const renderImages = items.map((item) => {
+				const cover = item.artwork_url || item.user.avatar_url;
+				return <img src={cover} className={itemClass} key={item.id} onClick={() => handleChooseTrack(item)} />;
+			});
+			return (
+				<div className="tiles">
+					{renderImages}
+				</div>
+			);
+		}
 		return (
 			<ul className="tracksList">
 				{renderItems}
@@ -51,4 +64,4 @@ class TracksList extends React.Component  {
 	}
 }
 
-export default connect(null,null)(TracksList);
+export default connect(null, null)(TracksList);

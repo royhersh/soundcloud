@@ -6,7 +6,6 @@ const initialState = {
 export default (state = initialState, action) => {
 	switch (action.type) {
 	case actions.SET_CURRENT_TRACK:
-		console.log('reducer action ', action);
 		return {
 			track: action.payload
 		};
